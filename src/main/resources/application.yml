@@ -1,0 +1,47 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  application:
+    name: springboot-starter-kit-api
+
+  datasource:
+    url: jdbc:h2:mem:starterkitdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: false
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+app:
+  jwt:
+    # 256-bit base64/hex secret key for HS256 signing
+    secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+    access-token-expiration-ms: 86400000     # 24 hours
+    refresh-token-expiration-ms: 604800000   # 7 days
+    issuer: springboot-starter-kit
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
